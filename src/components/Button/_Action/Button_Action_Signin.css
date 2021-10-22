@@ -1,0 +1,22 @@
+.Button_Action_Signin{
+  width: 76px;
+  height: 32px;
+  border: none;
+  background-color: #3456F3;
+  border-radius: 3px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #FFFFFF;
+}
+@media screen and (max-width: 320px) {
+  .Button_Action_Signin {
+    width: 54px;
+    height: 26px;
+    font-size: 10px;
+   }
+}
+
+.Button_Action_Signin:hover{
+  opacity: 0.6;
+}

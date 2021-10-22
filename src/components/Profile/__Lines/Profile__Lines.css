@@ -1,0 +1,17 @@
+.Profile__Lines{
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    list-style: none;
+    margin: 0 0 220px;
+  }
+  @media screen and (max-width: 768px) {
+    .Profile__Lines {
+      margin-bottom: 210px;
+    }
+  }
+  @media screen and (max-width: 320px) {
+    .Profile__Lines {
+      margin-bottom: 379px;
+    }
+  }

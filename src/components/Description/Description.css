@@ -1,0 +1,16 @@
+.Description{
+    display: grid;
+    row-gap: 26px;
+    text-align: left;
+    width: 100%;
+   }
+   @media screen and (max-width: 768px) {
+     .Description {
+        row-gap: 22px;
+      }
+   }
+   @media screen and (max-width: 580px) {
+     .Description {
+        row-gap: 16px;
+      }
+   }

@@ -1,0 +1,20 @@
+.Description__Text{
+    margin: 0;
+    text-align: left;
+    width: 100%;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+   }
+   @media screen and (max-width: 768px) {
+    .Description__Text{
+       font-size: 12px;
+       line-height: 18px;
+     }
+  }
+   @media screen and (max-width: 425px) {
+     .Description__Text{
+        font-size: 11px;
+        line-height: 16px;
+      }
+   }

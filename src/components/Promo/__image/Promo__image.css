@@ -1,0 +1,16 @@
+.Promo__image{
+    width: 722px;
+    height: 244px;
+    object-fit: contain;
+  }
+@media screen and (max-width: 862px) {
+  .Promo__image {
+    width: 680px;
+    height: 230px;
+  }
+}  
+@media screen and (max-width: 680px) {
+    .Promo__image {
+     object-fit: cover;
+    }
+  }  

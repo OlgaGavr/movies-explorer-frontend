@@ -1,0 +1,21 @@
+.Button_Action_More{
+    width: 320px;
+    height: 36px;
+    border: 1px solid #E8E8E8;
+    background-color: #FAFAFA;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    color: #000;
+  }
+    @media screen and (max-width: 425px) {
+      .Button_Action_More{
+        width: 240px;
+        height: 36px;
+      }
+    }
+    
+    .Button_Action_More:hover{
+      opacity: 0.6;
+}

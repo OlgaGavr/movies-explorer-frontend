@@ -1,0 +1,14 @@
+.Promo__signup-link{
+    margin-right: 30px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    color: #000000;
+  }
+  @media screen and (max-width: 320px) {
+    .Promo__signup-link {
+      margin-right: 14px;
+      font-size: 10px;
+     }
+  }
+  

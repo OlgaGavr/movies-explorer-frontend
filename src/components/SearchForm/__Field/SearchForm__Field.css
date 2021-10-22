@@ -1,0 +1,18 @@
+.SearchForm__Field{
+  width: calc(100% - 100px);
+  text-align: left;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+  margin: 0;
+  color: #A0A0A0;
+  border: none;
+  padding: 0;
+}
+  @media screen and (max-width: 425px) {
+   .SearchForm__Field{
+      width: calc(100% - 80px);
+      font-size: 16px;
+      line-height: 16px;
+    }
+  }

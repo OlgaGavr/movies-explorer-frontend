@@ -1,0 +1,12 @@
+.App {
+  font-family: 'Inter';
+  -webkit-font-smoothing: antialiased;
+  background-color: #FAFAFA;
+  color: #000000;
+  font-style: normal;
+  font-weight: normal;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}

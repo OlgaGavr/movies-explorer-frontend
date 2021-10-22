@@ -1,0 +1,19 @@
+.Portfolio{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 100px 0 0;  
+  }
+
+  @media screen and (max-width: 768px) {
+    .Portfolio {
+       padding: 90px 0 0; 
+    }
+  }
+    
+  @media screen and (max-width: 320px) {
+    .Portfolio{
+      padding: 70px 0 0; 
+    }
+  }

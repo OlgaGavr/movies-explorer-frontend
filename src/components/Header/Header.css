@@ -1,0 +1,21 @@
+.Header{
+  background-color: #FAFAFA;
+  width: calc(100% - 2*70px);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 18px 70px;  
+}
+@media screen and (max-width: 768px) {
+  .Header {
+    width: calc(100% - 2*30px);
+    padding: 15px 30px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .Header {
+    width: calc(100% - 2*15px);
+    padding: 15px;
+  }
+}

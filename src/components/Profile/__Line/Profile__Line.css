@@ -1,0 +1,15 @@
+.Profile__Line{
+    width: 100%;
+    display: flex;
+    margin: 0;
+    padding: 17px 0 16px;
+    flex-direction: column;
+    border-bottom: 1px solid #E8E8E8;
+  }
+  .Profile__Line:last-of-type {
+    padding-bottom: 0;
+    border: none;
+}
+.Profile__Line:first-of-type {
+    padding-top: 0;
+}

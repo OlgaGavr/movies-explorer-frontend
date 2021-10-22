@@ -1,0 +1,8 @@
+.Button_Action_Filter{
+    width: 36px;
+    height: 20px;
+    border-radius: 20px;
+    border: none;
+    background: #EBEBEB;
+    background-image: url(../../../images/smalltumb.svg);
+   }

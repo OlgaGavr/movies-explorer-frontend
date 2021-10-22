@@ -1,0 +1,14 @@
+.Footer__Container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0 0; 
+}
+
+@media screen and (max-width: 370px) {
+    .Footer__Container{
+      flex-direction: column-reverse;
+      justify-content: flex-start;
+      padding-top: 30px; 
+    }
+}

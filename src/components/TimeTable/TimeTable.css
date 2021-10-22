@@ -1,0 +1,27 @@
+.TimeTable{
+  display: grid;
+  width: 100%;
+  grid-template-columns:repeat(5, 1fr);
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "title-back title-front title-front title-front title-front"
+    "back front front front front";
+}
+ 
+@media screen and (max-width: 768px) {
+  .TimeTable{
+    grid-template-columns: 1fr 40px 5fr 28px;
+    grid-template-areas:
+    "title-back title-back title-front title-front title-front title-front title-front title-front"
+    "back back front front front front front front";
+  }
+}
+ 
+@media screen and (max-width: 320px) {
+  .TimeTable{
+    grid-template-columns: 1fr 50px 3fr 34px;
+    grid-template-areas:
+    "title-back title-back title-front title-front title-front title-front"
+    "back back front front front front";
+  }
+}

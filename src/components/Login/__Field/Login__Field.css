@@ -1,0 +1,12 @@
+.Login__Field{
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  color: #000;
+  padding: 15px;
+  min-height: 27px;
+  border: none;
+  border-radius: 8px;
+  width: calc(100% - 30px);
+  background-color: #F4F4F4;
+}

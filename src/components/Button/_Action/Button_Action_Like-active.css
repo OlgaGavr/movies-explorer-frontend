@@ -1,0 +1,6 @@
+.Button_Action_Like-active{
+    width: 14px;
+    height: 12px;
+    border: none;
+    background-image: url(../../../images/like-active.svg);
+   }

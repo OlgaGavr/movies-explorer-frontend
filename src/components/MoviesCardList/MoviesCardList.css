@@ -1,0 +1,18 @@
+.MoviesCardList{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 70px 0 10px;  
+  }
+  @media screen and (max-width: 768px) {
+    .MoviesCardList{
+     padding-top: 60px;
+    }
+  }
+  
+  @media screen and (max-width: 320px) {
+    .MoviesCardList{
+     padding-top: 40px;
+    }
+  }
+  

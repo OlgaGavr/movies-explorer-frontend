@@ -1,0 +1,13 @@
+.Promo__top{
+  width: 100%;
+  min-height: 74px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;  
+}
+@media screen and (max-width: 440px) {
+  .Promo__top{
+    width: calc(100% - 2*15px);
+    padding: 0 15px;
+  }
+}

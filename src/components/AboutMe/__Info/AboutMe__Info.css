@@ -1,0 +1,18 @@
+.AboutMe__Info{
+  display: flex;
+  max-width: 600px;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 70px 0 0; 
+}
+
+@media screen and (max-width: 768px) {
+  .AboutMe__Info{
+    margin-right: 50px;
+  }
+}
+@media screen and (max-width: 620px) {
+  .AboutMe__Info{
+    margin: 40px auto 0;
+  }
+}

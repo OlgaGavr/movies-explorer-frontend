@@ -1,0 +1,16 @@
+.Login__Signin-text{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #A0A0A0;
+    padding: 0;
+    margin: 0 6px 0 0;
+    text-align: left;  
+}
+@media screen and (max-width: 425px) {
+    .Login__Signin-text{
+      margin-right: 7px;
+      font-size: 12px;
+      line-height: 15px;
+    }
+  }

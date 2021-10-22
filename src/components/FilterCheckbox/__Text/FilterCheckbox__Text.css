@@ -1,0 +1,15 @@
+.FilterCheckbox__Text{
+  text-align: left;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  margin: 0 0 0 14px;
+}
+
+@media screen and (max-width: 320px) {
+  .FilterCheckbox__Text{
+    font-size: 11px;
+    line-height: 18px;
+    margin-left: 13px;
+  }
+}

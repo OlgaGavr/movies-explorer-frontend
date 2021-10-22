@@ -1,0 +1,19 @@
+.FilterCheckbox {
+    width: 100%;
+    display: flex;
+    margin: 0;
+    padding-bottom: 44px;
+    /* opacity: 0.2; */
+    border-bottom: 1px solid rgba(170, 170, 170, .2);
+    box-sizing: border-box;
+  }
+  @media screen and (max-width: 768px) {
+    .FilterCheckbox{
+      padding-bottom: 52px;
+    }
+  }  
+  @media screen and (max-width: 425px) {
+    .FilterCheckbox{
+      padding-bottom: 64px;
+    }
+  }

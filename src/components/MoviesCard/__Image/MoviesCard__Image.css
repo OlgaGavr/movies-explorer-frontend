@@ -1,0 +1,14 @@
+.MoviesCard__Image{
+    display: block;
+    width: 220px;
+    height: 122px;
+    object-fit: cover;
+}
+
+@media screen and (max-width: 425px) {
+    .MoviesCard__Image{
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+  

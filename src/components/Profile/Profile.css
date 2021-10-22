@@ -1,0 +1,20 @@
+.Profile{
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    padding: 74px 0 70px;
+    align-items: center;
+    background: #FFFFFF;  
+  }
+  @media screen and (max-width: 768px) {
+    .Profile{
+      padding: 236px 0 269px;
+    }
+  }
+  
+  @media screen and (max-width: 320px) {
+    .Profile{
+      padding: 70px 0 40px;
+    }
+  }
+  

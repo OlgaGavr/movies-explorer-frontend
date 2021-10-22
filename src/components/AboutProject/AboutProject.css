@@ -1,0 +1,21 @@
+.AboutProject{
+    width: calc(100% - 2*70px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 110px 70px; 
+    background-color: #FAFAFA; 
+  }
+  @media screen and (max-width: 768px) {
+    .AboutProject {
+      width: calc(100% - 2*50px);
+      padding: 90px 50px; 
+    }
+  }
+  
+  @media screen and (max-width: 320px) {
+    .AboutProject {
+      width: calc(100% - 2*18px);
+      padding: 70px 18px; 
+    }
+  }
