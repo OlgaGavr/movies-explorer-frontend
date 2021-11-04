@@ -1,0 +1,13 @@
+.MenuPopup__Link{
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  color: #000000;
+  padding: 0 0 4px;
+  border-bottom: none;
+  text-align: center;
+  text-decoration-line: none;
+}
+.MenuPopup__Link:hover{
+  opacity: 0.7;
+}

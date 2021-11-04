@@ -1,0 +1,14 @@
+.App__PageNotFound{
+  margin: 0 auto 60px;
+  min-height: 100vh;
+}
+@media screen and (max-width: 768px) {
+  .App__PageNotFound{
+    margin-bottom: 222px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .App__PageNotFound{
+    margin-bottom: 30px;
+  }
+}

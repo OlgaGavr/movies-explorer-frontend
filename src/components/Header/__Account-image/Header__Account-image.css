@@ -1,0 +1,11 @@
+.Header__Account-image{
+  width: 100px;
+  height: 32px;
+  object-fit: cover;  
+}
+@media screen and (max-width: 768px) {
+  .Header__Account-image{
+    width: 10px;
+    visibility: hidden;
+  }
+}

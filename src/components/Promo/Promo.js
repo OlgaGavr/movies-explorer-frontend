@@ -1,13 +1,15 @@
 import React from 'react';
 import './Promo.css';
-import './__top/Promo__top.css';
-import './__link/Promo__link.css';
+import './__Top/Promo__Top.css';
+import './__Link/Promo__Link.css';
 import '../Button/_Action/Button_Action_Signin.css';
 import '../Button/Button.css';
-import './__signup-link/Promo__signup-link.css';
-import './__title/Promo__title.css';
-import './__image/Promo__image.css';
-import './__conteiner/Promo__conteiner.css'
+import './__Signup-link/Promo__Signup-link.css';
+import './__Signin-link/Promo__Signin-link.css';
+import './__Title/Promo__Title.css';
+import './__Image/Promo__Image.css';
+import './__Conteiner/Promo__Conteiner.css';
+
 import Logo from '../Logo/Logo.js';
 import { Link } from 'react-router-dom';
 import ornament from '../../images/text__COLOR_landing-logo.svg';
@@ -18,7 +20,8 @@ function Promo() {
       <div className='Promo__top'>
         <Logo />
         <div>
-          <Link className='Promo__Signup-Link' to='/signup'>Регистрация</Link>
+          <Link className='Promo__Signup-link' to='/signup'>Регистрация</Link>
+          {/* <Link className='Button Button_Action_Signin' to='/signin'>Войти</Link> */}
           <button className="Button Button_Action_Signin" aria-label="войти">Войти</button>
         </div>
       </div>

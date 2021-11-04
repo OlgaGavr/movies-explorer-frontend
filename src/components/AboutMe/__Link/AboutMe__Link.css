@@ -13,3 +13,6 @@
       margin-right: 26px;
     }
   }
+  .AboutMe__Link:hover{
+    opacity: 0.7;
+  } 

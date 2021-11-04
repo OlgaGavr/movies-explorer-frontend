@@ -1,14 +1,20 @@
 import React from 'react';
 import './Movies.css';
+import '../App/__Movies/App__Movies.css';
 import MoviesCardList from '../MoviesCardList/MoviesCardList.js';
-
+import Preloader from '../Preloader/Preloader';
 import SearchForm from '../SearchForm/SearchForm.js';
 
-function Movies() {
+function Movies(props) {
+  
   return (
-    <section className="Movies">
-      <SearchForm></SearchForm>
-      <MoviesCardList></MoviesCardList>
+    <section className="Movies App__Movies">
+      <SearchForm isShort={true} />
+      {/* <Preloader></Preloader> */}
+      <MoviesCardList
+        typeSave={false}
+        cards={props.movies}
+      />
     </section>
   )
 }

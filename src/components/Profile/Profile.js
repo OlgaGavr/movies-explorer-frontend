@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './Profile.css';
+import '../App/__Profile/App__Profile.css';
 import './__Container/Profile__Container.css';
 import './__Title/Profile__Title.css';
 import './__Lines/Profile__Lines.css';
@@ -16,7 +17,7 @@ import './__Signout-link/Profile__Signout-link.css';
 
 function Profile() {
   return (
-    <article className='Profile'>
+    <article className='Profile App__Profile'>
       <div className='Profile__Container'>  
         <h2 className='Profile__Title'>Привет, Виталий!</h2>
         <ul className='Profile__Lines'>
@@ -39,7 +40,7 @@ function Profile() {
         </ul>
         <button type="submit" className="Button Button_Action_Edit">Редактировать</button>
         <div className='Profile__Signout'>
-          <Link className='Profile__Signout-link' to='/main'>Выйти из аккаунта</Link>
+          <Link className='Profile__Signout-link' to='/'>Выйти из аккаунта</Link>
         </div>
       </div>
     </article>

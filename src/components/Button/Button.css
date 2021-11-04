@@ -6,3 +6,6 @@
   cursor: pointer;
   transition: opacity 1s linear;
 }
+.Button:hover{
+  opacity: 0.8;
+}

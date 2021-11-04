@@ -1,11 +1,11 @@
 .Login__Lines{
   display: flex;
   flex-direction: column;
-  margin: 0 0 69px;
+  margin: 0 0 179px;
   width: 100%;
 }
 @media screen and (max-width: 425px) {
     .Login__Lines{
-        margin: 0 0 157px;
+        margin: 0 0 267px;
     }
   }

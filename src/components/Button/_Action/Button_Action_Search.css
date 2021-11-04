@@ -9,13 +9,10 @@
   line-height: 18px;
   color: #FFFFFF;
 }
-  @media screen and (max-width: 425px) {
-    .Button_Action_Search{
-      width: 80px;
-      height: 44px;
-    }
+@media screen and (max-width: 425px) {
+  .Button_Action_Search{
+    width: 80px;
+    height: 44px;
   }
+}
   
-  .Button_Action_Search:hover{
-    opacity: 0.6;
-  }

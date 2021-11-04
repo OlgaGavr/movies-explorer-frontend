@@ -2,14 +2,13 @@
   visibility: hidden; 
   border: none; 
 }
-  @media screen and (max-width: 768px) {
-    .Button_Action_Menu{
-        visibility: visible;
-        width: 44px;
-        height: 44px;
-        background-image: url(../../../images/menu.svg);
-        border: none;
-        background-color: #FFF;
-    }
+@media screen and (max-width: 768px) {
+  .Button_Action_Menu{
+    visibility: visible;
+    width: 44px;
+    height: 44px;
+    background-image: url(../../../images/menu.svg);
+    border: none;
+    background-color: #FFF;
   }
-  
+}

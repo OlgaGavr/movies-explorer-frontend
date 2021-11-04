@@ -28,8 +28,8 @@ function AboutMe() {
               Сейчас опять хочу вернуться к программированию.</p>
           </div>
           <div className='AboutMe__Links'>
-            <a className='AboutMe__Link' href='https://www.facebook.com/profile.php?id=100022367388832' target="_blank">Facebook</a>
-            <a className='AboutMe__Link' href='https://github.com/OlgaGavr' target="_blank">Github</a>
+            <a className='AboutMe__Link' href='https://www.facebook.com/profile.php?id=100022367388832' target="_blank" rel = "noreferrer">Facebook</a>
+            <a className='AboutMe__Link' href='https://github.com/OlgaGavr' target="_blank" rel = "noreferrer">Github</a>
           </div>  
         </div>
         <img className='AboutMe__Foto' src={foto} alt="Фотография" />

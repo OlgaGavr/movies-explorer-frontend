@@ -1,5 +1,5 @@
 .Profile__Container{
-    width: 100%;
+    width: calc(100% -20px);
     max-width: 410px;
     display: flex;
     flex-direction: column;

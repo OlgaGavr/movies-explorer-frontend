@@ -7,7 +7,7 @@ import '../Login/Login.css';
 import '../App/__Login/App__Login.css';
 import '../Login/__Title/Login__Title.css';
 import '../Login/__Form/Login__Form.css';
-import '../Login/__Lines/Login__Lines.css';
+import '../Register/__Lines/Register__Lines.css';
 import '../Login/__Line/Login__Line.css';
 import '../Login/__Text/Login__Text.css';
 import '../Login/__Field/Login__Field.css';
@@ -40,19 +40,19 @@ function Register() {
       <Logo />
       <h2 className='Login__Title'>Добро пожаловать!</h2>
       <form onSubmit={handleSubmit} className='Login__Form'>
-        <div className='Login__Lines'>
+        <div className='Register__Lines'>
           <div className='Login__Line'>
             <p className='Login__Text'>Имя</p>   
-            <input type="text" id="name" name="name" className="Login__Field" required />
+            <input type="text" id="name" name="name" className='Login__Field' required />
           </div>
           <div className='Login__Line'>
             <p className='Login__Text'>E-mail</p>    
-            <input type="email" id="email" name="email" className="Login__Field" required />
+            <input type="email" id="email" name="email" className='Login__Field' required />
             {/* value={registerData.email} onChange={handleChange} /> */}
             </div>
           <div className='Login__Line'>
             <p className='Login__Text'>Пароль</p>   
-            <input type="password" id="password" name="password" className="Login__Field" required />
+            <input type="password" id="password" name="password" className='Login__Field' required />
             {/* value={registerData.password} onChange={handleChange} /> */}
           </div>
           <span className='Login__Error'>Ошибка</span>
@@ -61,7 +61,7 @@ function Register() {
       </form>
       <div className='Login__Signin'>
         <p className='Login__Signin-text'>Уже зарегистрированы? </p>
-        <Link className='Login__Signin-link' to='/login'>Войти</Link>
+        <Link className='Login__Signin-link' to='/signin'>Войти</Link>
       </div>
     </div>
 

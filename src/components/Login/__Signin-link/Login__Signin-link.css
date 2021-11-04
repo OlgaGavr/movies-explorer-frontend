@@ -6,8 +6,11 @@
   text-decoration-line: none;
 }
 @media screen and (max-width: 425px) {
-    .Login__Signin-link{
-      font-size: 12px;
-      line-height: 15px;
-    }
+  .Login__Signin-link{
+    font-size: 12px;
+    line-height: 15px;
   }
+}
+.Login__Signin-link:hover{
+  opacity: 0.7;
+}
