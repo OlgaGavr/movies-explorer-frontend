@@ -1,17 +1,17 @@
-.Promo__conteiner{
+.Promo__Conteiner{
     width: 100%;
     margin: 102px 0 48px;
     display: flex;
     justify-content: flex-end;
   }
 @media screen and (max-width: 768px) {
-  .Promo__conteiner{
+  .Promo__Conteiner{
     margin: 140px auto 70px;
     justify-content: center;
   }
 }  
 @media screen and (max-width: 680px) {
-    .Promo__conteiner{
+    .Promo__Conteiner{
       margin: 60px auto 40px;
       justify-content: center;
       overflow: hidden;

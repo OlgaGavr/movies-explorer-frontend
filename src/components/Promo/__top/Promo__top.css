@@ -1,4 +1,4 @@
-.Promo__top{
+.Promo__Top{
   width: 100%;
   min-height: 74px;
   display: flex;
@@ -6,7 +6,7 @@
   align-items: center;  
 }
 @media screen and (max-width: 440px) {
-  .Promo__top{
+  .Promo__Top{
     width: calc(100% - 2*15px);
     padding: 0 15px;
   }

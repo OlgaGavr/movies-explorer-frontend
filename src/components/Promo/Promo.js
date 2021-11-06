@@ -17,7 +17,7 @@ import ornament from '../../images/text__COLOR_landing-logo.svg';
 function Promo() {
   return (
     <section className='Promo'>
-      <div className='Promo__top'>
+      <div className='Promo__Top'>
         <Logo />
         <div>
           <Link className='Promo__Signup-link' to='/signup'>Регистрация</Link>
@@ -25,9 +25,9 @@ function Promo() {
           <button className="Button Button_Action_Signin" aria-label="войти">Войти</button>
         </div>
       </div>
-      <h1 className='Promo__title'>Учебный проект студента факультета Веб-разработки.</h1>
-      <div className='Promo__conteiner'>
-        <img className="Promo__image" src={ornament} alt="Украшение" />
+      <h1 className='Promo__Title'>Учебный проект студента факультета Веб-разработки.</h1>
+      <div className='Promo__Conteiner'>
+        <img className="Promo__Image" src={ornament} alt="Украшение" />
       </div>
     </section>
   )
