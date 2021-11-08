@@ -1,0 +1,24 @@
+.TimeTable__Back{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-area: back;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #A0A0A0;
+    margin: 14px 0 0;
+  }
+  @media screen and (max-width: 768px) {
+    .TimeTable__Back{
+        font-weight: 400;
+    }
+}
+    
+  @media screen and (max-width: 320px) {
+      .TimeTable__Back{
+        font-size: 11px;
+        line-height: 13px;
+        margin-top: 10px;
+      }
+  }

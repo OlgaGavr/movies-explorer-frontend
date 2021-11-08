@@ -1,0 +1,19 @@
+.MoviesCard{
+    width: calc(100% - 28px);
+    min-height: 134px;
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 6px 6px 22px;
+    margin: 0 0 40px;
+    background: #F4F4F4; 
+  }
+  
+  @media screen and (max-width: 425px) {
+    .MoviesCard{
+      width: 100%;
+      padding: 0;
+      margin-bottom: 20px;
+      flex-direction: column-reverse;
+    }
+  }
+  

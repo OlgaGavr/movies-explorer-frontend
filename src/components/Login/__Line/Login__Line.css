@@ -1,0 +1,10 @@
+.Login__Line{
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 20px;
+    width: 100%;
+}
+.Login__Line:last-of-type {
+    margin-bottom: 0;
+}
+  

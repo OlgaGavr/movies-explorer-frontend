@@ -1,0 +1,14 @@
+.MoviesCard__Name{
+    text-align: left;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    margin: 0 0 13px;
+}
+  @media screen and (max-width: 320px) {
+   .MoviesCard__Name{
+      font-size: 12px;
+      line-height: 15px;
+      margin-bottom: 8px;
+    }
+}

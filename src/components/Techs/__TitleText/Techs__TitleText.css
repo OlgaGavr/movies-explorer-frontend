@@ -1,0 +1,21 @@
+.Techs__TitleText{
+    text-align: center;
+    width: 100%;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 58px;
+    letter-spacing: -0.04em;
+    margin: 90px auto 26px;
+  }
+  @media screen and (max-width: 768px) {
+    .Techs__TitleText{
+      margin: 80px auto 22px;
+     }
+   }
+  @media screen and (max-width: 410px) {
+   .Techs__TitleText{
+      font-size: 30px;
+      line-height: 36px;
+      margin: 60px auto 24px;
+    }
+  }

@@ -1,0 +1,13 @@
+.Button_Action_Account{
+  width: 100px;
+  height: 32px;
+  background-image: url(../../../images/profile.svg);
+  border: none;
+  background-color: #FFF;
+}
+@media screen and (max-width: 768px) {
+  .Button_Action_Account{
+    width: 10px;
+    visibility: hidden;
+  }
+}

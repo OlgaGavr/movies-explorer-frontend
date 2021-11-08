@@ -1,0 +1,17 @@
+.MenuPopup__Container{
+  background: #FAFAFA;
+  width: 100%;
+  max-width: 520px;
+  padding: 159px 0 90px;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+@media screen and (min-width: 320px) {
+  .popup__container {
+    padding: 144px 0 46px;
+  }
+}

@@ -1,0 +1,15 @@
+.Description__Title{
+    margin: 0;
+    text-align: left;
+    width: 100%;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.04em;
+   }
+   @media screen and (max-width: 320px) {
+     .Description__Title{
+        font-size: 18px;
+        line-height: 22px;
+      }
+   }

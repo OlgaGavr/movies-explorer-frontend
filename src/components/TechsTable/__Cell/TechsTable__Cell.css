@@ -1,0 +1,17 @@
+.TechsTable__Cell{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    background-color: #E8E8E8;
+    border-radius: 10px;
+    margin: 0;
+  }
+  @media screen and (max-width: 830px) {
+   .TechsTable__Cell {
+      font-size: 12px;
+      line-height: 15px;
+    }
+  }

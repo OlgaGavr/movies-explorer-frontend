@@ -1,0 +1,17 @@
+.PageNotFound__Back-link{
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #3456F3;
+  text-align: center;
+  text-decoration-line: none;
+}
+@media screen and (max-width: 425px) {
+  .PageNotFound__Back-link{
+    font-size: 12px;
+    line-height: 15px;
+  }  
+}
+.PageNotFound__Back-link:hover{
+  opacity: 0.7;
+}

@@ -1,0 +1,14 @@
+.Footer__Links{
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media screen and (max-width: 370px) {
+    .Footer__Links{
+      width: 100%;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 0 0 30px; 
+      align-items: center;
+    }
+}

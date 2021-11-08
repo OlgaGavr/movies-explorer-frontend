@@ -1,0 +1,17 @@
+.Button_Action_Edit{
+  width: 410px;
+  height: 16px;
+  border: none;
+  background-color: #FFFFFF;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 15px;
+  color: #000000;
+}
+@media screen and (max-width: 425px) {
+  .Button_Action_Edit{
+    width: 100%;
+    height: 15px;
+    font-size: 15px;
+  }
+}

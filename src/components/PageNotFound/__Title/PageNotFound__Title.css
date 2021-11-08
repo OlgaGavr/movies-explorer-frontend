@@ -1,0 +1,14 @@
+.PageNotFound__Title{
+  font-weight: 400;
+  font-size: 140px;
+  line-height: 169px;
+  text-align: center;
+  margin: 0 0 5px;
+}
+@media screen and (max-width: 425px) {
+    .PageNotFound__Title{
+        font-size: 80px;
+        line-height: 97px;
+        margin: 0 0 10px;
+    }
+}

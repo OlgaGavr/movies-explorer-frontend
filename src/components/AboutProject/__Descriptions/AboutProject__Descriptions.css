@@ -1,0 +1,22 @@
+.AboutProject__Descriptions{
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  column-gap: 40px;
+  margin: 70px auto 110px;
+}
+
+@media screen and (max-width: 768px) {
+    .AboutProject__Descriptions {
+      column-gap: 30px;
+      margin-bottom: 93px;
+    }
+}
+@media screen and (max-width: 425px) {
+    .AboutProject__Descriptions {
+      grid-template-columns: repeat(1, 1fr);
+      row-gap: 16px;
+      margin: 60px auto 60px;
+    }
+}

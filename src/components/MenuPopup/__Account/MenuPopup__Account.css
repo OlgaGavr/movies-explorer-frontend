@@ -1,0 +1,7 @@
+.MenuPopup__Account{
+  width: 100px;
+  height: 32px;
+}
+.MenuPopup__Account:hover{
+  opacity: 0.7;
+} 

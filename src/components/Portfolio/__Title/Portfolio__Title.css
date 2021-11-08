@@ -1,0 +1,16 @@
+.Portfolio__Title{
+    text-align: left;
+    width: 100%;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 20px;
+    margin: 0 0 50px;
+    color: #A0A0A0;
+  }
+
+  @media screen and (max-width: 320px) {
+    .Portfolio__Title {
+      font-size: 14px;
+      margin: 0 0 40px;
+    }
+  }

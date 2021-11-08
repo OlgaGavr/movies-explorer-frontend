@@ -1,0 +1,13 @@
+.AboutMe__All{
+    display: flex;
+    width: 100%;
+    justify-content: space-between; 
+    margin: 66px auto 0; 
+}
+    
+  @media screen and (max-width: 620px) {
+    .AboutMe__All{
+      flex-direction: column-reverse;
+      margin: 60px auto 0;
+    }
+  }
