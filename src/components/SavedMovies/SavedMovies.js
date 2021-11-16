@@ -8,7 +8,7 @@ import SearchForm from '../SearchForm/SearchForm.js';
 function SavedMovies(props) {
   return (
     <section className='SavedMovies App__SavedMovies'>
-      <SearchForm isShort={false} ></SearchForm>
+      <SearchForm isShort={false} onSearch={props.onSearch} ></SearchForm>
       <MoviesCardList
         typeSave={true}
         cards={props.movies}

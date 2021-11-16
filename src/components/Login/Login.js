@@ -18,41 +18,41 @@ import '../Login/__Signin/Login__Signin.css';
 import '../Login/__Signin-text/Login__Signin-text.css';
 import '../Login/__Signin-link/Login__Signin-link.css';
 
-function Login() {
-//   const [loginData, setLoginData] = React.useState({ email: '', password: '' })
+function Login({ onLogin }) {
+  const [loginData, setLoginData] = React.useState({ email: '', password: '' })
  
-//   function handleChange(e) {
-//     const { name, value } = e.target;
-//     setLoginData({
-//       ...loginData,
-//       [name]: value, 
-//     });
-//   }
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setLoginData({
+      ...loginData,
+      [name]: value, 
+    });
+  }
 
-//   function handleSubmit(e) {
-//     e.preventDefault();
-//     if (!loginData.email || !loginData.password)
-//       return;
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (!loginData.email || !loginData.password)
+      return;
     
-//     onLogin(loginData)
-//       .catch(err => console.log(err));
-//   }
+    onLogin(loginData)
+      .catch(err => console.log(err));
+  }
 
   return (
     <div className='Login App__Login'>
       <Logo />
       <h2 className='Login__Title'>Рады видеть!</h2>
-      <form className='Login__Form'>
+      <form onSubmit={handleSubmit} className='Login__Form'>
         <div className='Login__Lines'>
           <div className='Login__Line'>
             <p className='Login__Text'>E-mail</p> 
-            <input type="email" id="email" name="email" className='Login__Field' required />
-            {/* value={loginData.email} onChange={handleChange} /> */}
+            <input type="email" id="email" name="email" className='Login__Field' required
+           value={loginData.email} onChange={handleChange} />
           </div>
           <div className='Login__Line'>
             <p className='Login__Text'>Пароль</p>  
-            <input type="password" id="password" name="password" className='Login__Field' required />
-            {/* value={loginData.password} onChange={handleChange} /> */}
+            <input type="password" id="password" name="password" className='Login__Field' required
+            value={loginData.password} onChange={handleChange} />
           </div>
         </div>
         <button type="submit" className='Button Button_Action_Login'>Войти</button>

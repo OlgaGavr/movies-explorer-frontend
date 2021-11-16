@@ -18,23 +18,23 @@ import '../Login/__Signin/Login__Signin.css';
 import '../Login/__Signin-text/Login__Signin-text.css';
 import '../Login/__Signin-link/Login__Signin-link.css';
 
-function Register() {
-//   const [registerData, setRegisterData] = React.useState({ email: '', password: '' })
+function Register({ onRegister }) {
+  const [registerData, setRegisterData] = React.useState({ email: '', password: '', name: '' })
 
-//   function handleChange(e) {
-//     const { name, value } = e.target;
-//     setRegisterData({
-//       ...registerData,
-//       [name]: value,
-//     });
-//   }
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setRegisterData({
+      ...registerData,
+      [name]: value,
+    });
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
-    // onRegister(registerData)
-    //   .catch(err => console.log(err));
+    onRegister(registerData)
+      .catch(err => console.log(err));
   }
-  
+    
   return (
     <div className='Login App__Login'>
       <Logo />
@@ -43,17 +43,18 @@ function Register() {
         <div className='Register__Lines'>
           <div className='Login__Line'>
             <p className='Login__Text'>Имя</p>   
-            <input type="text" id="name" name="name" className='Login__Field' required />
+            <input type="text" id="name" name="name" className='Login__Field' required 
+             value={registerData.name} onChange={handleChange} />
           </div>
           <div className='Login__Line'>
             <p className='Login__Text'>E-mail</p>    
-            <input type="email" id="email" name="email" className='Login__Field' required />
-            {/* value={registerData.email} onChange={handleChange} /> */}
+            <input type="email" id="email" name="email" className='Login__Field' required 
+            value={registerData.email} onChange={handleChange} />
             </div>
           <div className='Login__Line'>
             <p className='Login__Text'>Пароль</p>   
-            <input type="password" id="password" name="password" className='Login__Field' required />
-            {/* value={registerData.password} onChange={handleChange} /> */}
+            <input type="password" id="password" name="password" className='Login__Field' required 
+            value={registerData.password} onChange={handleChange} />
           </div>
           <span className='Login__Error'>Ошибка</span>
         </div>

@@ -15,7 +15,7 @@ import '../Button/_Action/Button_Action_Edit.css';
 import './__Signout/Profile__Signout.css';
 import './__Signout-link/Profile__Signout-link.css';
 
-function Profile() {
+function Profile({onLogout}) {
   return (
     <article className='Profile App__Profile'>
       <div className='Profile__Container'>  
@@ -40,7 +40,7 @@ function Profile() {
         </ul>
         <button type="submit" className="Button Button_Action_Edit">Редактировать</button>
         <div className='Profile__Signout'>
-          <Link className='Profile__Signout-link' to='/'>Выйти из аккаунта</Link>
+          <Link className='Profile__Signout-link' to='/' onClick={onLogout} >Выйти из аккаунта</Link>
         </div>
       </div>
     </article>

@@ -9,12 +9,12 @@ function Movies(props) {
   
   return (
     <section className="Movies App__Movies">
-      <SearchForm isShort={true} />
-      {/* <Preloader></Preloader> */}
+      <SearchForm isShort={props.isShort} onSearch={props.onSearch} onFilter={props.onFilter}/>
+      { (props.isPreloader) ? <Preloader></Preloader> :
       <MoviesCardList
         typeSave={false}
         cards={props.movies}
-      />
+      /> }
     </section>
   )
 }
