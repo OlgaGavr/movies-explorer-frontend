@@ -203,12 +203,12 @@ function App() {
   };
 
   function searchMovie(keyWord){
-    setAllMovies((state) => state.filter((c) => c.description.includes(keyWord) && ((isShortMovie && (c.duration <= 50)) || (!isShortMovie && (c.duration > 50)))));
+    setAllMovies((state) => state.filter((c) => c.description.includes(keyWord) && ((isShortMovie && (c.duration <= 40)) || (!isShortMovie && (c.duration > 40)))));
     setCountClick(7);
   }
   
   function searchFavMovie(keyWord){
-    setFavMovies((state) => state.filter((c) => c.description.includes(keyWord) && ((isShortFavMovie && (c.duration <= 50)) || (!isShortFavMovie && (c.duration > 50)))));
+    setFavMovies((state) => state.filter((c) => c.description.includes(keyWord) && ((isShortFavMovie && (c.duration <= 40)) || (!isShortFavMovie && (c.duration > 40)))));
   }
   
   function show() {
@@ -264,7 +264,20 @@ function App() {
   return ( 
     <CurrentUserContext.Provider value={currentUser}>
     <div className="App">
-      <Header loggedIn = {loggedIn} onMenu={handleMenuClick} />
+      <Switch>
+        <Route path="/movies">
+          <Header loggedIn = {loggedIn} onMenu={handleMenuClick} />
+        </Route>
+        <Route path="/saved-movies">
+          <Header loggedIn = {loggedIn} onMenu={handleMenuClick} />
+        </Route>
+        <Route path="/profile">
+          <Header loggedIn = {loggedIn} onMenu={handleMenuClick} />
+        </Route>
+        <Route exact path="/">
+          <Header loggedIn = {loggedIn} onMenu={handleMenuClick} />
+        </Route>
+      </Switch>
       <Switch>
         <Route path="/signin">
           <Login loggedIn = {loggedIn} onLogin={login} errorMessage={errorMessage} resetMessage={resetMessage} />
@@ -304,7 +317,17 @@ function App() {
           <PageNotFound />
         </Route>
       </Switch>
-      <Footer />
+      <Switch>
+        <Route path="/movies">
+          <Footer />
+        </Route>
+        <Route path="/saved-movies">
+          <Footer />
+        </Route>
+        <Route exact path="/">
+          <Footer />
+        </Route>
+      </Switch>
 
       <MenuPopup isOpen={isMenuPopupOpen} closePopup={closeAllPopup} /> 
       <InfoTolltip isOpen={isInfoTooltipOpen} closePopups={closeAllPopup}/>

@@ -35,13 +35,13 @@ function Header({ loggedIn, onMenu }) {
           </Link>
         
           <button type="Button" className="Button Button_Action_Menu" aria-label="меню" onClick={onMenu} />
-        </div>) : (location.pathname ==='/' ) ?
+        </div>) : 
         (<div className='Header__Container'>
           <Link className='Header__Signup-link' to='/signup'>Регистрация</Link>
           <div className='Header__Signin'>
             <Link className='Header__Signin-link' to='/signin'>Войти</Link>
           </div>
-        </div>) : (<div></div>) }
+        </div>)}
     </header>
   )
 }

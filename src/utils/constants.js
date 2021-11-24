@@ -5,6 +5,6 @@ export const option = {
   }
 }
 export const optionAuth = {
-  url: 'https://api.peliculas.nomoredomains.club'
+url: 'https://api.peliculas.nomoredomains.club'
 // url: 'http://localhost:3000'
 }
