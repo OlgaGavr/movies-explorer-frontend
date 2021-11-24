@@ -3,10 +3,15 @@ import './More.css';
 import '../Button/Button.css';
 import '../Button/_Action/Button_Action_More.css';
 
-function More() {
+function More({onMore}) {
+  function handleSubmit(e) {
+    e.preventDefault();
+    onMore();
+  }
+
   return (
     <section className="More">
-      <button type="submit" className="Button Button_Action_More">Ещё</button>       
+      <button type="submit" className="Button Button_Action_More" onClick={handleSubmit}>Ещё</button>     
     </section>
   )
 }

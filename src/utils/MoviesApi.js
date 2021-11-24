@@ -1,7 +1,6 @@
 import {option} from '../utils/constants.js';  
 
 const checkResponse = (response) => {
-  console.log(response.ok);
   return response.ok ? response.json() : Promise.reject(new Error(`Ошибка ${response.status}: ${response.statusText}`));
 }
 

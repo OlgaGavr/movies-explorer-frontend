@@ -7,13 +7,11 @@ import '../Button/_Action/Button_Action_Search.css';
 import './__Error/SearchForm__Error.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox.js';
 
-function SearchForm({isShort, onSearch, onFilter }) {
-  const [keyWord, setKeyWord] = React.useState({word: ''});
+function SearchForm({ typeSave, isShort, onSearch, onFilter }) {
+  
+  const [keyWord, setKeyWord] = React.useState({ word: '' });
   const [errorSearh, setErrorSearh] = React.useState('');
-  //const classError = (`${(keyWord.word==='') ? 'SearchForm__Error-active' : 'SearchForm__Error'}`);
    
-   
-
   function handleChange(e) {
     const { name, value } = e.target;
     setKeyWord({
@@ -23,9 +21,8 @@ function SearchForm({isShort, onSearch, onFilter }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (keyWord.word === '')
+    if (keyWord.word === '' && !typeSave)
     {
-      console.log('Введите слово');
       setErrorSearh('Нужно ввести ключевое слово');
       return
     }
