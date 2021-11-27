@@ -25,7 +25,6 @@ function Profile({onLogout, onUpdateUser, errorMessage, resetMessage}) {
   const [errors, setErrors] = React.useState({});
   const [isValid, setIsValid] = React.useState(false);
   
-  
   React.useEffect(() => {
     if (currentUser !== undefined) {
       setValues({name: currentUser.name, email: currentUser.email})

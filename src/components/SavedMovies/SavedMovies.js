@@ -17,6 +17,7 @@ function SavedMovies(props) {
         onMore={props.onMore}
         countClick={props.countClick}
         onCardLike={props.onCardLike}
+        onImageClick={props.onImageClick}
       />
     </section>
   )

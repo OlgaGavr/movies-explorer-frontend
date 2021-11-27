@@ -7,11 +7,17 @@ import '../Button/_Action/Button_Action_Search.css';
 import './__Error/SearchForm__Error.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox.js';
 
-function SearchForm({ typeSave, isShort, onSearch, onFilter }) {
+function SearchForm({ typeSave, isShort, isWord, onSearch, onFilter }) {
   
   const [keyWord, setKeyWord] = React.useState({ word: '' });
   const [errorSearh, setErrorSearh] = React.useState('');
-   
+  
+  React.useEffect(() => {
+    if (isWord !== undefined) {
+      setKeyWord({word: isWord})
+    }
+  }, []); 
+  
   function handleChange(e) {
     const { name, value } = e.target;
     setKeyWord({

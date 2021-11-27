@@ -1,0 +1,7 @@
+.InfoTolltip__Success{
+    width: 120px;
+    height: 120px;
+    border: none;
+    background-image: url(../../../images/UnionYes.svg);
+    background-color: #ffffff;
+}

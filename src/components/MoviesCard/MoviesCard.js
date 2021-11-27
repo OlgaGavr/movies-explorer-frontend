@@ -11,12 +11,9 @@ import '../Button/_Action/Button_Action_Like-delete.css';
 import './__Image/MoviesCard__Image.css';
 
 function MoviesCard({ typeSave, card, onCardLike, favMovies }) {
-//  console.log('typeSave', typeSave, favMovies, card._id);
-  // const cardId = (typeSave) ? card._id : card.id;
   const isLiked = (typeSave) ? true : favMovies.some(fav => fav.movieId === card.id);
   const delCard = (typeSave) ? card : favMovies.find(fav => fav.movieId===card.id);
  
-//  console.log(isLiked, delCard);
   const cardLikeButtonClassName = (`Button ${typeSave ? 'Button_Action_Like-delete' : isLiked ? 'Button_Action_Like-active' : 'Button_Action_Like'}`);
   const cardLink = (typeSave) ? card.image : 'https://api.nomoreparties.co' + card.image.url;
   const trailerLink = (typeSave) ? card.trailer : card.trailerLink;
@@ -36,7 +33,7 @@ function MoviesCard({ typeSave, card, onCardLike, favMovies }) {
         </div>
         <button type="button" className={cardLikeButtonClassName} aria-label="сохранить в избранное" onClick={() => onCardLike(card, isLiked, delCard)} />
       </div>
-      <a href={trailerLink} target="_blank" rel = "noreferrer">
+      <a href={trailerLink} target="_blank" rel = "noreferrer" >
         <img className="MoviesCard__Image" alt = {card.nameRU} src = {cardLink} />
       </a>
     </article>

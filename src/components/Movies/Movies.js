@@ -10,7 +10,7 @@ function Movies(props) {
   return (
     <section className="Movies App__Movies">
       
-      <SearchForm typeSave={false} isShort={props.isShort} onSearch={props.onSearch} onFilter={props.onFilter}/>
+      <SearchForm typeSave={false} isShort={props.isShort} isWord={props.isWord} onSearch={props.onSearch} onFilter={props.onFilter}/>
       { (props.isPreloader) ? 
       <Preloader></Preloader> :
       <MoviesCardList

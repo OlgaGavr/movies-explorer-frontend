@@ -26,12 +26,7 @@ function App() {
 
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [currentUser, setCurentUser] = React.useState({});
-  const [userInfo, setUserInfo] = React.useState({
-    email: '',
-    name: '',
-    _id: '',
-  });
-  
+ 
   const [keyWordMovies, setKeyWordMovies] = React.useState('');
   const [keyWordFavMovies, setKeyWordFavMovies] = React.useState('');
 
@@ -41,36 +36,106 @@ function App() {
   const [allMovies, setAllMovies] = React.useState([]);
   const [favMovies, setFavMovies] = React.useState([]);
 
-  const [countClick, setCountClick] = React.useState(7);
+  
   const [errorMessage, setErrorMessage] = React.useState('');
+  const [isSuccess, setIsSuccess] = React.useState(true);
+  const [infoCaption, setInfoCaption] = React.useState('');
+  
   const history = useHistory();
-  const pathName=useLocation();
+  const location = useLocation();
+  const [loading, setLoading] = React.useState(true);  
+  const [currentRow, setCurrentRow] = React.useState(5);
+  const [countClick, setCountClick] = React.useState(0);
+
+  function resize() {
+    const currentHideNav = window.innerWidth;
+    if (currentHideNav <= 425) {
+      setCurrentRow(5);
+    } else {
+      setCurrentRow(7);
+    } 
+  }
+ 
+  React.useEffect(() => {
+    window.addEventListener("resize", resize);
+  }, []);
+  React.useEffect(() => {
+    resize();
+  }, []);
+
   React.useEffect(() => {
     if (loggedIn) {
       MainApi.getAllData()
         .then((data) => {
           setCurentUser(data[0].data);
           setFavMovies(data[1].data);
-    //      history.push('/movies');
         })
-    }
-  }, [loggedIn, history]);
+
+    } 
+  }, [loggedIn]);
   
   React.useEffect(() => {
-    MainApi.getUser()
-      .then((userData) => {
-        setCurentUser(userData);
-      })
-      .catch(() => console.log('Ошибка загрузки данных'));
+    MainApi.getAllData()
+    .then((data) => {
+      setCurentUser(data[0].data);
+      setFavMovies(data[1].data);
+    })
+    // setKeyWordMovies(localStorage.getItem('word'));
+    // setIsShortMovie(localStorage.getItem('short'));
+    // MainApi.getUser()
+    //   .then((res) => {
+    //     if (res.message) {
+    //       throw res
+    //     } else {
+    //       return res
+    //     }
+    //   })
+    //   .then((res) => {
+    //     setCurentUser(res.userData);
+    //   })
+    //   .catch((err) => {
+    //     setErrorMessage(err.message);
+    //   });
   }, []);
 
+//  React.useEffect(() => {
+    // MainApi.getMovies()
+    //   .then((res) => {
+    //     if (res.message) {
+    //       throw res
+    //     } else {
+    //       return res
+    //     }
+    //   })
+    //   .then((res) => {
+    //     setFavMovies(res.data);
+    //   })
+    //   .catch((err) => {
+    //     setErrorMessage(err.message);
+    //   });
+ // }, []);
+  
   React.useEffect(() => {
-    MainApi.getMovies()
-      .then((movies) => {
-        setFavMovies(movies.data);
-      })
-      .catch(() => console.log(`Ошибка загрузки данных`));
-  }, []);
+    if (loggedIn) {
+      MainApi.getMovies()
+        .then((res) => {
+          if (res.message) {
+            throw res
+          } else {
+            return res
+          }
+        })
+        .then((res) => {
+          setFavMovies(res.data);
+        })
+        .then(() => {
+          searchFavMovie(keyWordFavMovies);
+        })
+        .catch((err) => {
+          setErrorMessage(err.message);
+        });
+    } 
+  }, [isShortFavMovie]);
 
   React.useEffect(() => {
     tokenCheck();
@@ -82,19 +147,7 @@ function App() {
     setAllMovies(JSON.parse(films));
     searchMovie(keyWordMovies);
   }, [isShortMovie]);
-
-  React.useEffect(() => {
-    MainApi.getMovies()
-      .then((movies) => {
-        setFavMovies(movies.data);
-      })
-      .then(() => {
-        searchFavMovie(keyWordFavMovies);
-      })
-      .catch(() => console.log(`Ошибка загрузки данных`));
-  }, [isShortFavMovie]);
-  
-  
+ 
   function register({email, password, name}) {
     return MainApi
       .register({email, password, name})
@@ -107,6 +160,7 @@ function App() {
       })
       .then((res) => {
         login({email, password});
+       
       })
       .catch((err) => {
         setErrorMessage(err.message);
@@ -135,6 +189,7 @@ function App() {
   function tokenCheck() {
     const jwt = localStorage.getItem('jwt');  //получила токен из localStorage
     if (!jwt) {
+      setLoading(false);
       return
     }
     return MainApi
@@ -147,19 +202,45 @@ function App() {
         }
       })
       .then((res) => {
-        setUserInfo({ 
+        setCurentUser({ 
           email: res.email,
           name: res.name,
           _id: res._id,
         });
         setLoggedIn(true);
-        history.push('/movies');
+        setLoading(false);
+       
+        if ((location.pathname==='/signin' || location.pathname==='/signup')&&(loggedIn||loading)) {
+          history.goBack();
+        } else if (loggedIn===loading) {
+          history.push('/movies');
+        } 
       })
       .catch((err) => {
         setErrorMessage(err.message);
       });
   }
   
+  function handleUpdateUser(user) {
+    return MainApi
+      .changeUser(user)
+      .then((res) => {
+        if (res.message) {
+          throw res
+        } else {
+          return res
+        }
+      })
+      .then((res) => {
+        setCurentUser(res.data);
+        setIsInfoTooltipOpen(true);
+        setInfoCaption('Вы успешно изменили свои данные!');
+      })
+      .catch((err) => {
+        setErrorMessage(err.message);
+      });
+  }
+
   function logout() {
     localStorage.removeItem('jwt');
     localStorage.removeItem('films');
@@ -171,6 +252,14 @@ function App() {
   
   function getAllMovies(keyWord) {
     setIsPreloader(true);
+        
+    // if (!keyWord) {
+    //   keyWord = localStorage.getItem('word');
+    //   setIsShortMovie(localStorage.getItem('short'));
+    // } else {
+    //   localStorage.setItem('word', JSON.stringify(keyWord));
+    //   localStorage.setItem('short', JSON.stringify(isShortMovie));
+    // }
     setKeyWordMovies(keyWord);
     const films = localStorage.getItem('films');
     if (!films) {
@@ -191,6 +280,7 @@ function App() {
   
   function getFavMovies(keyWord) {
     setIsPreloader(true);
+    setKeyWordFavMovies(keyWord);
     MainApi.getMovies()
       .then((movies) => {
         setFavMovies(movies.data);
@@ -203,43 +293,61 @@ function App() {
   };
 
   function searchMovie(keyWord){
-    setAllMovies((state) => state.filter((c) => c.description.includes(keyWord) && ((isShortMovie && (c.duration <= 40)) || (!isShortMovie && (c.duration > 40)))));
-    setCountClick(7);
+    
+    const keyWordReady = keyWord.trim().toLowerCase();
+    setAllMovies((state) => state.filter((c) => c.nameRU.toLowerCase().includes(keyWordReady) && ((isShortMovie && (c.duration <= 40)) || (!isShortMovie && (c.duration > 40)))));
+    setCountClick(currentRow);
   }
   
   function searchFavMovie(keyWord){
-    setFavMovies((state) => state.filter((c) => c.description.includes(keyWord) && ((isShortFavMovie && (c.duration <= 40)) || (!isShortFavMovie && (c.duration > 40)))));
+    const keyWordReady = keyWord.trim().toLowerCase();
+    setFavMovies((state) => state.filter((c) => c.nameRU.toLowerCase().includes(keyWordReady) && ((isShortFavMovie && (c.duration <= 40)) || (!isShortFavMovie && (c.duration > 40)))));
   }
   
   function show() {
-    setCountClick(countClick + 7);
+    setCountClick(countClick + currentRow);
   }
-  
+
   function handleCardLike(card, isLike, delId) {
     if (isLike) {
-      MainApi.delLikeCard(delId._id)
-      .then(() => {
+      return MainApi
+      .delLikeCard(delId._id)
+      .then((res) => {
+        if (res.message) {
+          throw res
+        } else {
+          return res
+        }
+      })
+      .then((res) => {
         setFavMovies((state) => state.filter((c) => c._id !== delId._id))
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        setIsSuccess(false);
+        setIsInfoTooltipOpen(true);
+        setInfoCaption(err.message);
+      });
     } else {
-      MainApi.addLikeCard(card)
-        .then((newCard) => {
-          setFavMovies([newCard, ...favMovies]);
+      return MainApi
+        .addLikeCard(card)
+        .then((res) => {
+          if (res.message) {
+            throw res
+          } else {
+            return res
+          }
         })
-        .catch(err => console.log(err));
+        .then((res) => {
+          setFavMovies([res, ...favMovies]);
+        })
+        .catch(err => {
+          setIsSuccess(false);
+          setIsInfoTooltipOpen(true);
+          setInfoCaption('Невозможно сохранить карточку');
+        });
       }    
   }
   
-  function handleUpdateUser(user) {
-    MainApi.changeUser(user)
-      .then((result) => {
-        setCurentUser(result.data);
-        setIsInfoTooltipOpen(true);
-      })
-      .catch(err => console.log(err));
-  }
-
   function handleMenuClick() {
     setIsMenuPopupOpen(true);
   }
@@ -247,6 +355,7 @@ function App() {
   function closeAllPopup() {
     setIsMenuPopupOpen(false);
     setIsInfoTooltipOpen(false);
+    setInfoCaption('');
   }
   
   function handleFilterClick() {
@@ -264,7 +373,10 @@ function App() {
   return ( 
     <CurrentUserContext.Provider value={currentUser}>
     <div className="App">
-      <Switch>
+      { (loading) ?
+      (<div>...Loading</div>) :
+      (<div>
+        <Switch>
         <Route path="/movies">
           <Header loggedIn = {loggedIn} onMenu={handleMenuClick} />
         </Route>
@@ -302,7 +414,7 @@ function App() {
           isPreloader={isPreloader} movies={favMovies} favMovies={favMovies}
           isShort={isShortFavMovie} isWord={keyWordFavMovies} 
           onSearch={getFavMovies} onFilter={handleFavFilterClick}
-          onMore={show} countClick={countClick} onCardLike={handleCardLike} 
+          onMore={show} countClick={countClick} onCardLike={handleCardLike}
         />
         <ProtectedRoute 
           path="/profile"
@@ -327,10 +439,11 @@ function App() {
         <Route exact path="/">
           <Footer />
         </Route>
-      </Switch>
+      </Switch> 
+      </div>)}
 
       <MenuPopup isOpen={isMenuPopupOpen} closePopup={closeAllPopup} /> 
-      <InfoTolltip isOpen={isInfoTooltipOpen} closePopups={closeAllPopup}/>
+      <InfoTolltip isOpen={isInfoTooltipOpen} closePopups={closeAllPopup} isSuccess={isSuccess} caption={infoCaption} />
     </div>
     </CurrentUserContext.Provider>
   );

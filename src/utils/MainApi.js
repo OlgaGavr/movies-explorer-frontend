@@ -1,8 +1,8 @@
 import {optionAuth} from '../utils/constants.js';  
 
-const checkResponse = (response) => {
-  return response.ok ? response.json() : Promise.reject(new Error(`Ошибка ${response.status}: ${response.statusText}`));
-}
+// const checkResponse = (response) => {
+//   return response.ok ? response.json() : Promise.reject(new Error(`Ошибка ${response.status}: ${response.statusText}`));
+// }
 
 const headers={
   'Content-Type': 'application/json',
@@ -15,7 +15,7 @@ export const getUser = () => {
       'Content-Type': 'application/json',
     }
   })
-  .then(res => checkResponse(res));
+  .then((res) => {return res.json()});
 }
 
 export const getMovies = () => {
@@ -25,7 +25,7 @@ export const getMovies = () => {
       'Content-Type': 'application/json',
     }
   })
-  .then(res => checkResponse(res));
+  .then((res) => {return res.json()});
 }
 
 export const getAllData = () => {
@@ -82,7 +82,7 @@ export const addLikeCard = (newCard) => {
       nameEN: newCard.nameEN
     })
   })
-  .then(res => checkResponse(res));
+  .then(res => {return res.json()});
 }
 
 export const delLikeCard = (movieId) => {
@@ -92,7 +92,7 @@ export const delLikeCard = (movieId) => {
       authorization:  'Bearer ' + localStorage.getItem('jwt'),
     },
   })
-  .then(res => checkResponse(res));
+  .then(res => {return res.json()});
 }
 
 export const changeUser = (user) => {
@@ -107,6 +107,6 @@ export const changeUser = (user) => {
       email: user.email
     })
   })
-    .then(res => checkResponse(res));
+    .then((res) => {return res.json()});
 }
 
