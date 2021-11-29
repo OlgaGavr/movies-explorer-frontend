@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Logo from '../Logo/Logo.js';
 
 import '../Login/Login.css';
@@ -22,7 +22,8 @@ function Register({ onRegister, errorMessage, resetMessage }) {
   const [errors, setErrors] = React.useState({});
   const [isValid, setIsValid] = React.useState(false);
   const classButton = (`Button Button_Action_Login ${isValid ? '' : 'Button_Inactive'}`);
-    
+  
+  
   const handleChange = (event) => {
     const target = event.target;
     const name = target.name;
@@ -57,7 +58,7 @@ function Register({ onRegister, errorMessage, resetMessage }) {
           <div className='Login__Line'>
             <p className='Login__Text'>E-mail</p>    
             <input type="email" id="email" name="email" className='Login__Field' required 
-        //    pattern="^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$"
+              pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
             value={values.email} onChange={handleChange} />
             <span className='Login__Error'>{errors.email}</span>
           </div>

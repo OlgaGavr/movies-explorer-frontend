@@ -71,7 +71,7 @@ function Profile({onLogout, onUpdateUser, errorMessage, resetMessage}) {
             <div className='Profile__Line-input'>
               <p className='Profile__Text'>E-mail</p>
               <input type="email" className="Profile__Field" id="email-input"
-                   name="email" required
+                   name="email" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                    value={values.email} onChange={handleChange} />
             </div>
             <span className='Login__Error'>{errors.email}</span>

@@ -8,3 +8,15 @@ export const optionAuth = {
 // url: 'https://api.peliculas.nomoredomains.club'
 url: 'http://localhost:3000'
 }
+
+export const optionFilms = {
+  durationShort: 40,
+  countFilms: {
+    wide: 7,
+    narrow: 5 
+  }
+}
+
+export const optionScreen = {
+  widthNarrow: 425 
+}

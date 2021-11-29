@@ -53,12 +53,13 @@ function Login({ onLogin, errorMessage, resetMessage }) {
           <div className='Login__Line'>
             <p className='Login__Text'>E-mail</p> 
             <input type="email" id="email" name="email" className='Login__Field' required
+            pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
            value={values.email} onChange={handleChange} />
            <span className='Login__Error'>{errors.email}</span>
           </div>
           <div className='Login__Line'>
             <p className='Login__Text'>Пароль</p>  
-            <input type="password" id="password" name="password" className='Login__Field' required
+            <input type="password" id="password" name="password" className='Login__Field' minLength="6" required
             value={values.password} onChange={handleChange} />
             <span className='Login__Error'>{errors.password}</span>
           </div>

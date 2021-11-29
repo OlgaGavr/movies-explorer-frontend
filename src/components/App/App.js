@@ -18,6 +18,7 @@ import InfoTolltip from '../InfoTolltip/InfoTolltip.js';
 
 import * as MainApi from '../../utils/MainApi.js';
 import * as MoviesApi from '../../utils/MoviesApi.js';
+import {optionFilms, optionScreen} from '../../utils/constants.js';
 
 function App() {
   const [isPreloader, setIsPreloader] = React.useState(false);
@@ -35,6 +36,7 @@ function App() {
 
   const [allMovies, setAllMovies] = React.useState([]);
   const [favMovies, setFavMovies] = React.useState([]);
+  const [likeMovies, setLikeMovies] = React.useState([]);
 
   
   const [errorMessage, setErrorMessage] = React.useState('');
@@ -48,11 +50,11 @@ function App() {
   const [countClick, setCountClick] = React.useState(0);
 
   function resize() {
-    const currentHideNav = window.innerWidth;
-    if (currentHideNav <= 425) {
-      setCurrentRow(5);
+    const currentWidthScreen = window.innerWidth;
+    if (currentWidthScreen <= optionScreen.widthNarrow) {
+      setCurrentRow(optionFilms.countFilms.narrow);
     } else {
-      setCurrentRow(7);
+      setCurrentRow(optionFilms.countFilms.wide);
     } 
   }
  
@@ -69,54 +71,41 @@ function App() {
         .then((data) => {
           setCurentUser(data[0].data);
           setFavMovies(data[1].data);
+          setLikeMovies(data[1].data);
         })
 
     } 
-  }, [loggedIn]);
+  }, [loggedIn, history]);
   
   React.useEffect(() => {
     MainApi.getAllData()
     .then((data) => {
       setCurentUser(data[0].data);
       setFavMovies(data[1].data);
+      setLikeMovies(data[1].data);
     })
-    // setKeyWordMovies(localStorage.getItem('word'));
-    // setIsShortMovie(localStorage.getItem('short'));
-    // MainApi.getUser()
-    //   .then((res) => {
-    //     if (res.message) {
-    //       throw res
-    //     } else {
-    //       return res
-    //     }
-    //   })
-    //   .then((res) => {
-    //     setCurentUser(res.userData);
-    //   })
-    //   .catch((err) => {
-    //     setErrorMessage(err.message);
-    //   });
+    const films = localStorage.getItem('films');
+    const word = localStorage.getItem('word');
+    const short = localStorage.getItem('short');
+    if (JSON.parse(films) && (JSON.parse(word) !=='')) {
+      setAllMovies(JSON.parse(films));
+      setKeyWordMovies(JSON.parse(word));
+      setIsShortMovie(JSON.parse(short));
+      searchMovie(JSON.parse(word));
+    } else {
+        console.log('обнуление');
+        setAllMovies([]);
+        setIsShortMovie(false);
+      }
+  }, []);
+ 
+  React.useEffect(() => {
+    tokenCheck();
   }, []);
 
-//  React.useEffect(() => {
-    // MainApi.getMovies()
-    //   .then((res) => {
-    //     if (res.message) {
-    //       throw res
-    //     } else {
-    //       return res
-    //     }
-    //   })
-    //   .then((res) => {
-    //     setFavMovies(res.data);
-    //   })
-    //   .catch((err) => {
-    //     setErrorMessage(err.message);
-    //   });
- // }, []);
-  
-  React.useEffect(() => {
+  React.useEffect(() => {  // короткометражки любимые фильмы
     if (loggedIn) {
+      console.log('короткометражки любимые фильмы')
       MainApi.getMovies()
         .then((res) => {
           if (res.message) {
@@ -127,6 +116,7 @@ function App() {
         })
         .then((res) => {
           setFavMovies(res.data);
+          setLikeMovies(res.data);
         })
         .then(() => {
           searchFavMovie(keyWordFavMovies);
@@ -137,14 +127,10 @@ function App() {
     } 
   }, [isShortFavMovie]);
 
-  React.useEffect(() => {
-    tokenCheck();
-  }, []);
-
-  React.useEffect(() => {
+  React.useEffect(() => {  // короткометражки фильмы
+    localStorage.setItem('short', JSON.stringify(isShortMovie));
     if (keyWordMovies==='') return;
-    const films = localStorage.getItem('films');
-    setAllMovies(JSON.parse(films));
+    setAllMovies(JSON.parse(localStorage.getItem('films')));
     searchMovie(keyWordMovies);
   }, [isShortMovie]);
  
@@ -244,23 +230,23 @@ function App() {
   function logout() {
     localStorage.removeItem('jwt');
     localStorage.removeItem('films');
+    localStorage.removeItem('word');
+    localStorage.removeItem('short');
     setLoggedIn(false);
     setAllMovies('');
     setFavMovies('');
+    setLikeMovies('');
+    setIsShortMovie(false);
+    setIsShortFavMovie(false);
+    setKeyWordMovies('');
+    setKeyWordFavMovies('');
     history.push('/signin');
   }
   
   function getAllMovies(keyWord) {
     setIsPreloader(true);
-        
-    // if (!keyWord) {
-    //   keyWord = localStorage.getItem('word');
-    //   setIsShortMovie(localStorage.getItem('short'));
-    // } else {
-    //   localStorage.setItem('word', JSON.stringify(keyWord));
-    //   localStorage.setItem('short', JSON.stringify(isShortMovie));
-    // }
     setKeyWordMovies(keyWord);
+    localStorage.setItem('word', JSON.stringify(keyWord));
     const films = localStorage.getItem('films');
     if (!films) {
       MoviesApi.getMovies()
@@ -284,6 +270,7 @@ function App() {
     MainApi.getMovies()
       .then((movies) => {
         setFavMovies(movies.data);
+        setLikeMovies(movies.data);
       })
       .then(() => {
         searchFavMovie(keyWord);
@@ -293,15 +280,21 @@ function App() {
   };
 
   function searchMovie(keyWord){
-    
     const keyWordReady = keyWord.trim().toLowerCase();
-    setAllMovies((state) => state.filter((c) => c.nameRU.toLowerCase().includes(keyWordReady) && ((isShortMovie && (c.duration <= 40)) || (!isShortMovie && (c.duration > 40)))));
+    localStorage.setItem('word', JSON.stringify(keyWordReady));
+    setAllMovies((state) => state.filter((c) => c.nameRU.toLowerCase().includes(keyWordReady) 
+                                                && ((isShortMovie && (c.duration <= optionFilms.durationShort)) 
+  //                                              || (!isShortMovie && (c.duration > optionFilms.durationShort)))));
+                                                  || (!isShortMovie))));
     setCountClick(currentRow);
   }
   
   function searchFavMovie(keyWord){
     const keyWordReady = keyWord.trim().toLowerCase();
-    setFavMovies((state) => state.filter((c) => c.nameRU.toLowerCase().includes(keyWordReady) && ((isShortFavMovie && (c.duration <= 40)) || (!isShortFavMovie && (c.duration > 40)))));
+    setFavMovies((state) => state.filter((c) => c.nameRU.toLowerCase().includes(keyWordReady) 
+                                                && ((isShortFavMovie && (c.duration <= optionFilms.durationShort))
+                                                || (!isShortFavMovie)))); 
+  //                                              || (!isShortFavMovie && (c.duration > optionFilms.durationShort)))));
   }
   
   function show() {
@@ -321,6 +314,7 @@ function App() {
       })
       .then((res) => {
         setFavMovies((state) => state.filter((c) => c._id !== delId._id))
+        setLikeMovies((state) => state.filter((c) => c._id !== delId._id))
       })
       .catch(err => {
         setIsSuccess(false);
@@ -339,6 +333,7 @@ function App() {
         })
         .then((res) => {
           setFavMovies([res, ...favMovies]);
+          setLikeMovies([res, ...favMovies]);
         })
         .catch(err => {
           setIsSuccess(false);
@@ -402,7 +397,7 @@ function App() {
           path="/movies"
           loggedIn = {loggedIn} 
           component={Movies}
-          isPreloader={isPreloader} movies={allMovies} favMovies={favMovies}
+          isPreloader={isPreloader} movies={allMovies} favMovies={likeMovies}
           isShort={isShortMovie} isWord={keyWordMovies}
           onSearch={getAllMovies} onFilter={handleFilterClick} onMenu={handleMenuClick}
           onMore={show} countClick={countClick} onCardLike={handleCardLike}
@@ -411,7 +406,7 @@ function App() {
           path="/saved-movies"
           loggedIn = {loggedIn} 
           component={SavedMovies}
-          isPreloader={isPreloader} movies={favMovies} favMovies={favMovies}
+          isPreloader={isPreloader} movies={favMovies} favMovies={likeMovies}
           isShort={isShortFavMovie} isWord={keyWordFavMovies} 
           onSearch={getFavMovies} onFilter={handleFavFilterClick}
           onMore={show} countClick={countClick} onCardLike={handleCardLike}
