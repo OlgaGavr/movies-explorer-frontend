@@ -1,5 +1,4 @@
 .Header{
-  background-color: #FAFAFA;
   width: calc(100% - 2*70px);
   display: flex;
   justify-content: space-between;

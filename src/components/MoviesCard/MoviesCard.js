@@ -10,21 +10,32 @@ import '../Button/_Action/Button_Action_Like.css';
 import '../Button/_Action/Button_Action_Like-delete.css';
 import './__Image/MoviesCard__Image.css';
 
-function MoviesCard({ typeSave, card }) {
-  const cardLikeButtonClassName = (`button ${typeSave ? 'Button_Action_Like-delete' : card.isLike ? 'Button_Action_Like-active' : 'Button_Action_Like'}`);
+function MoviesCard({ typeSave, card, onCardLike, favMovies }) {
+  const isLiked = (typeSave) ? true : favMovies.some(fav => fav.movieId === card.id);
+  const delCard = (typeSave) ? card : favMovies.find(fav => fav.movieId===card.id);
+ 
+  const cardLikeButtonClassName = (`Button ${typeSave ? 'Button_Action_Like-delete' : isLiked ? 'Button_Action_Like-active' : 'Button_Action_Like'}`);
+  const cardLink = (typeSave) ? card.image : 'https://api.nomoreparties.co' + card.image.url;
+  const trailerLink = (typeSave) ? card.trailer : card.trailerLink;
 
+  function getTimeFromMins(mins) {
+    const hours = Math.trunc(mins/60);
+    const minutes = mins % 60;
+    return hours + 'ч ' + minutes + 'м';
+  };
+ 
   return (
     <article className="MoviesCard">
       <div className="MoviesCard__Group">
         <div className="MoviesCard__Info-group">
           <p className='MoviesCard__Name'>{card.nameRU}</p>  
-          <p className='MoviesCard__Duration'>{card.duration}</p>
+          <p className='MoviesCard__Duration'>{getTimeFromMins(card.duration)}</p>
         </div>
-        {/* <button type="button" className={`Button ${card.isLike ? 'Button_Action_Like-active' : 'Button_Action_Like'}`}  */}
-        <button type="button" className={cardLikeButtonClassName} 
-                  aria-label="сохранить в избранное" />
+        <button type="button" className={cardLikeButtonClassName} aria-label="сохранить в избранное" onClick={() => onCardLike(card, isLiked, delCard)} />
       </div>
-      <img className="MoviesCard__Image" alt = {card.nameRU} src = {card.link} />
+      <a href={trailerLink} target="_blank" rel = "noreferrer" >
+        <img className="MoviesCard__Image" alt = {card.nameRU} src = {cardLink} />
+      </a>
     </article>
   )
 }

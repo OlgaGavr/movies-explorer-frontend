@@ -1,4 +1,4 @@
-.Promo__Signup-link{
+.Header__Signup-link{
     margin-right: 30px;
     font-weight: 500;
     font-size: 12px;
@@ -7,12 +7,12 @@
     text-decoration-line: none;
   }
   @media screen and (max-width: 320px) {
-    .Promo__Signup-link {
+    .Header__Signup-link {
       margin-right: 14px;
       font-size: 10px;
     }
   }
 
-  .Promo__Signup-link:hover{
+  .Header__Signup-link:hover{
     opacity: 0.7;
   } 

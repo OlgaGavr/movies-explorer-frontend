@@ -1,0 +1,11 @@
+.SearchForm__Container-error{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 27px;  
+}
+@media screen and (max-width: 425px) {
+  .SearchForm__Container-error{
+    margin: 0 0 30px;
+  } 
+}

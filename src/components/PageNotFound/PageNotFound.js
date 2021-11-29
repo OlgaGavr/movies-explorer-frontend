@@ -16,7 +16,6 @@ function PageNotFound() {
       <h2 className='PageNotFound__Title'>404</h2>
       <p className='PageNotFound__Text'>Страница не найдена</p> 
       <button className="Button Button_Action_Back" onClick={() => history.goBack()}>Назад</button>
-      {/* <Link className='PageNotFound__Back-link' to='/login'>Назад</Link> */}
     </div>
 
   )

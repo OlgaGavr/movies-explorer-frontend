@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 import Logo from '../Logo/Logo.js';
 
 import '../Login/Login.css';
@@ -18,54 +17,66 @@ import '../Login/__Signin/Login__Signin.css';
 import '../Login/__Signin-text/Login__Signin-text.css';
 import '../Login/__Signin-link/Login__Signin-link.css';
 
-function Register() {
-//   const [registerData, setRegisterData] = React.useState({ email: '', password: '' })
-
-//   function handleChange(e) {
-//     const { name, value } = e.target;
-//     setRegisterData({
-//       ...registerData,
-//       [name]: value,
-//     });
-//   }
+function Register({ onRegister, errorMessage, resetMessage }) {
+  const [values, setValues] = React.useState({ email: '', password: '', name: '' });
+  const [errors, setErrors] = React.useState({});
+  const [isValid, setIsValid] = React.useState(false);
+  const classButton = (`Button Button_Action_Login ${isValid ? '' : 'Button_Inactive'}`);
+  
+  
+  const handleChange = (event) => {
+    const target = event.target;
+    const name = target.name;
+    const value = target.value;
+    resetMessage();
+    setValues({...values, [name]: value});
+    setErrors({...errors, [name]: target.validationMessage });
+    setIsValid(target.closest("form").checkValidity());
+  };
 
   function handleSubmit(e) {
     e.preventDefault();
-    // onRegister(registerData)
-    //   .catch(err => console.log(err));
+    onRegister(values)
+      .catch(err => {
+        console.log(err)});
   }
-  
+    
   return (
     <div className='Login App__Login'>
       <Logo />
       <h2 className='Login__Title'>Добро пожаловать!</h2>
-      <form onSubmit={handleSubmit} className='Login__Form'>
+      <form onSubmit={handleSubmit} className='Login__Form' noValidate>
         <div className='Register__Lines'>
           <div className='Login__Line'>
             <p className='Login__Text'>Имя</p>   
-            <input type="text" id="name" name="name" className='Login__Field' required />
+            <input type="text" id="name" name="name" className='Login__Field'
+              minLength="2" maxLength="40" 
+              pattern="[- a-zA-ZаАбБвВгГдДеЕёЁжЖзЗиИйЙкКлЛмМнНоОпПрРсСтТуУфФхХцЦчЧшШщЩъЪыЫьЬэЭюЮяЯ]+" required 
+              value={values.name} onChange={handleChange} />
+            <span className='Login__Error'>{errors.name}</span>
           </div>
           <div className='Login__Line'>
             <p className='Login__Text'>E-mail</p>    
-            <input type="email" id="email" name="email" className='Login__Field' required />
-            {/* value={registerData.email} onChange={handleChange} /> */}
-            </div>
+            <input type="email" id="email" name="email" className='Login__Field' required 
+              pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            value={values.email} onChange={handleChange} />
+            <span className='Login__Error'>{errors.email}</span>
+          </div>
           <div className='Login__Line'>
             <p className='Login__Text'>Пароль</p>   
-            <input type="password" id="password" name="password" className='Login__Field' required />
-            {/* value={registerData.password} onChange={handleChange} /> */}
+            <input type="password" id="password" name="password" className='Login__Field' minLength="6" required 
+            value={values.password} onChange={handleChange} />
+            <span className='Login__Error'>{errors.password}</span>
           </div>
-          <span className='Login__Error'>Ошибка</span>
+          <span className='Login__Error'>{errorMessage}</span>
         </div>
-        <button type="submit" className="Button Button_Action_Login">Зарегистрироваться</button>
+        <button type="submit" className={classButton} >Зарегистрироваться</button>
       </form>
       <div className='Login__Signin'>
         <p className='Login__Signin-text'>Уже зарегистрированы? </p>
         <Link className='Login__Signin-link' to='/signin'>Войти</Link>
       </div>
     </div>
-
-
   )
 }
 
