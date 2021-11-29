@@ -93,7 +93,6 @@ function App() {
       setIsShortMovie(JSON.parse(short));
       searchMovie(JSON.parse(word));
     } else {
-        console.log('обнуление');
         setAllMovies([]);
         setIsShortMovie(false);
       }
